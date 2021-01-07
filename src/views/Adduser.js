@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import {add} from "../action/actionUser"
+import {asyncAdd} from "../action/actionUser"
 
 export class Adduser extends Component {
     adduser = () => {
         let username = this.refs.username.value;
         let userpwd = this.refs.userpwd.value;
-        let userList = this.props.list;
-        this.props.add({id: userList.length?userList[userList.length - 1].id + 1:1, username, userpwd})
+        this.props.asyncAdd({username, userpwd})
     }
     render() {
         return (
@@ -25,7 +24,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    add
+    asyncAdd
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Adduser)

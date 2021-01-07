@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import "../css/userList.css"
-import {del} from "../action/actionUser"
+import {asyncQuery,asyncDel} from "../action/actionUser"
 import {changeNav} from "../action/actionNav"
 
 export class Userinfo extends Component {
     componentDidMount(){
         this.props.changeNav(false);
+        this.props.asyncQuery();
     }
     componentWillUnmount(){
         this.props.changeNav(true);
@@ -25,7 +26,7 @@ export class Userinfo extends Component {
                             return <tr key={item.id}>
                                 <td>{item.username}</td>
                                 <td>{item.userpwd}</td>
-                                <td><span onClick={()=>{this.props.del(item.id)}}>删除</span></td>
+                                <td><span onClick={()=>{this.props.asyncDel(item.id)}}>删除</span></td>
                             </tr>
                         })}
                     </tbody>
@@ -40,7 +41,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-    del,
+    asyncQuery,
+    asyncDel,
     changeNav
 }
 

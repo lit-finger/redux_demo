@@ -16,9 +16,11 @@ let defaultState = {
 const userReducer = (state = defaultState, action) => {
     switch (action.type) {
         case actionType.ADD_User:
-            return { list: [...state.list,action.playload] }
+            return { list: [...state.list, action.playload] }
         case actionType.DEL_User:
-            return { list: state.list.filter(item => item.id*1 !== action.playload*1) }
+            return { list: state.list.filter(item => item.id * 1 !== action.playload * 1) }
+        case actionType.QUERY_User:
+            return { list: action.playload }
         default:
     }
     return state;

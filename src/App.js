@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import Router from "./router";
+import { connect } from 'react-redux'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+    render() {
+        let style = {
+            display: this.props.flag ? "block" : "none"
+        }
+        return (
+            <>
+                <div style={style}>
+                    <a href="#/">首页</a>&emsp;|&emsp;
+                   <a href="#/about">关于</a>&emsp;|&emsp;
+                   <a href="#/adduser">新增用户</a>&emsp;|&emsp;
+                   <a href="#/userinfo">用户列表</a>
+                </div>
+                <div className="main">
+                    <Router></Router>
+                </div>
+            </>
+        )
+    }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+    flag: state.navInfo.flag
+})
+
+const mapDispatchToProps = {
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)

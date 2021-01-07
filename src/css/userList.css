@@ -1,0 +1,10 @@
+.userlist>table{
+    background-color: cyan;
+    width: 300px;
+    line-height: 30px;
+    text-align: center;
+    margin: 30px auto;
+}
+.userlist>table td span{
+    color: blue;
+}
